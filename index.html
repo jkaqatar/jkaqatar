@@ -1,0 +1,918 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>JKA Philippines — Qatar Chapter | Shotokan Karate</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Zen+Kaku+Gothic+New:wght@400;500;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* ===== Inyo (red/white) emblem — reusable ===== */
+  :root{
+    --paper:#F5F3EE;
+    --ink:#151412;
+    --ink-soft:#4A4640;
+    --red:#A6231C;
+    --red-deep:#7A190F;
+    --line:#D8D3C7;
+    --panel:#FFFFFF;
+    --dojo-black:#0B0B0C;
+    --gold:#B08A3E;
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Inter',sans-serif;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{background:var(--red);color:#fff;}
+  h1,h2,h3,h4{font-family:'Oswald',sans-serif;font-weight:700;letter-spacing:.01em;line-height:1.08;color:var(--ink);}
+  .jp{font-family:'Zen Kaku Gothic New',sans-serif;}
+  a{color:inherit;text-decoration:none;}
+  img,svg{display:block;max-width:100%;}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 28px;}
+  .section{padding:96px 0;}
+  @media(max-width:720px){.section{padding:64px 0;}}
+
+  /* subtle brush stroke texture used as section dividers */
+  .divider{
+    height:2px;width:100%;
+    background:repeating-linear-gradient(90deg,var(--line) 0 18px, transparent 18px 26px);
+    opacity:.9;
+  }
+
+  /* ============ NAV ============ */
+  header{
+    position:sticky;top:0;z-index:100;
+    background:rgba(11,11,12,.92);
+    backdrop-filter:blur(10px);
+    border-bottom:1px solid rgba(255,255,255,.08);
+  }
+  .navwrap{
+    max-width:var(--maxw);margin:0 auto;padding:0 28px;
+    display:flex;align-items:center;justify-content:space-between;
+    height:76px;
+  }
+  .brand{display:flex;align-items:center;gap:12px;}
+  .emblem{width:42px;height:42px;flex-shrink:0;display:block;}
+  .brand-text{color:#fff;}
+  .brand-text .l1{font-family:'Oswald';font-weight:700;font-size:15px;letter-spacing:.06em;line-height:1.15;}
+  .brand-text .l2{font-size:11px;color:#9c9994;letter-spacing:.08em;}
+  nav.links{display:flex;gap:34px;}
+  nav.links a{
+    color:#d8d5cf;font-size:14px;font-weight:500;letter-spacing:.02em;
+    position:relative;padding:6px 0;transition:color .2s;
+  }
+  nav.links a:hover{color:#fff;}
+  nav.links a.active{color:#fff;}
+  nav.links a.active::after{
+    content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--red);
+  }
+  .nav-cta{
+    background:var(--red);color:#fff;border:none;
+    padding:11px 22px;font-size:13px;font-weight:600;letter-spacing:.03em;
+    cursor:pointer;transition:background .2s;font-family:'Inter';
+  }
+  .nav-cta:hover{background:var(--red-deep);}
+  .burger{display:none;flex-direction:column;gap:5px;cursor:pointer;background:none;border:none;}
+  .burger span{width:24px;height:2px;background:#fff;}
+  @media(max-width:900px){
+    nav.links{display:none;}
+    .burger{display:flex;}
+    .nav-cta{display:none;}
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    background:var(--dojo-black);
+    color:#fff;position:relative;overflow:hidden;
+    padding:100px 0 0 0;
+  }
+  .hero::before{
+    content:"";position:absolute;inset:0;
+    background:
+      radial-gradient(ellipse 700px 500px at 82% 20%, rgba(166,35,28,.18), transparent 60%),
+      repeating-linear-gradient(115deg, rgba(255,255,255,.025) 0 2px, transparent 2px 90px);
+    pointer-events:none;
+  }
+  .hero-grid{
+    position:relative;z-index:1;
+    display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center;
+    max-width:var(--maxw);margin:0 auto;padding:0 28px 70px;
+  }
+  @media(max-width:900px){.hero-grid{grid-template-columns:1fr;}}
+  .kicker{
+    display:flex;align-items:center;gap:10px;color:var(--red);
+    font-family:'Oswald';font-size:13px;font-weight:600;letter-spacing:.14em;
+    margin-bottom:26px;
+    opacity:0;animation:riseIn .7s .1s ease forwards;
+  }
+  .kicker::before{content:"";width:26px;height:1px;background:var(--red);}
+  .hero h1{
+    font-size:clamp(40px,6vw,68px);color:#fff;margin-bottom:22px;
+    opacity:0;animation:riseIn .8s .22s ease forwards;
+  }
+  .hero h1 em{font-style:normal;color:var(--red);}
+  .hero p.lead{
+    font-size:18px;color:#c9c6c0;max-width:520px;margin-bottom:38px;
+    opacity:0;animation:riseIn .8s .38s ease forwards;
+  }
+  .hero-ctas{display:flex;gap:16px;flex-wrap:wrap;opacity:0;animation:riseIn .8s .52s ease forwards;}
+  .btn-primary{
+    background:var(--red);color:#fff;border:none;padding:16px 30px;
+    font-family:'Oswald';font-weight:600;font-size:14.5px;letter-spacing:.03em;
+    cursor:pointer;transition:transform .2s, background .2s;display:inline-block;
+  }
+  .btn-primary:hover{background:var(--red-deep);transform:translateY(-2px);}
+  .btn-ghost{
+    background:transparent;color:#fff;border:1px solid rgba(255,255,255,.35);
+    padding:16px 30px;font-family:'Oswald';font-weight:600;font-size:14.5px;letter-spacing:.03em;
+    cursor:pointer;transition:border-color .2s, background .2s;display:inline-block;
+  }
+  .btn-ghost:hover{border-color:#fff;background:rgba(255,255,255,.06);}
+
+  @keyframes riseIn{from{opacity:0;transform:translateY(18px);}to{opacity:1;transform:translateY(0);}}
+
+  /* hero: seamless self-hosted training video with drifting smoke atmosphere */
+  .hero-visual{position:relative;height:520px;display:flex;align-items:center;justify-content:center;overflow:visible;}
+  @media(max-width:900px){.hero-visual{height:auto;padding:56px 0;}}
+
+  .smoke-layer{position:absolute;inset:-90px;pointer-events:none;z-index:0;filter:blur(46px);mix-blend-mode:screen;}
+  .smoke{position:absolute;border-radius:50%;opacity:.4;}
+  .smoke.s1{width:260px;height:260px;background:radial-gradient(circle,rgba(237,234,226,.55),transparent 70%);top:-30px;left:-40px;animation:driftA 15s ease-in-out infinite;}
+  .smoke.s2{width:320px;height:320px;background:radial-gradient(circle,rgba(16,16,18,.7),transparent 70%);bottom:-50px;right:-60px;animation:driftB 19s ease-in-out infinite;}
+  .smoke.s3{width:210px;height:210px;background:radial-gradient(circle,rgba(166,35,28,.4),transparent 70%);top:38%;right:-80px;animation:driftC 17s ease-in-out infinite;}
+  .smoke.s4{width:230px;height:230px;background:radial-gradient(circle,rgba(237,234,226,.4),transparent 70%);bottom:6%;left:-70px;animation:driftA 21s ease-in-out infinite reverse;}
+  @keyframes driftA{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(22px,-16px) scale(1.15);}}
+  @keyframes driftB{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(-26px,16px) scale(1.1);}}
+  @keyframes driftC{0%,100%{transform:translate(0,0) scale(1);}50%{transform:translate(16px,22px) scale(1.2);}}
+
+  .hero-video-frame{position:relative;z-index:1;width:100%;max-width:380px;}
+  .hero-video{
+    width:100%;display:block;
+    -webkit-mask-image:radial-gradient(ellipse 82% 88% at center, #000 58%, transparent 100%);
+    mask-image:radial-gradient(ellipse 82% 88% at center, #000 58%, transparent 100%);
+  }
+  .emblem-watermark{
+    position:absolute;width:460px;height:460px;top:50%;left:50%;
+    transform:translate(-50%,-50%);opacity:.05;pointer-events:none;
+  }
+
+  /* ============ TRUST STRIP ============ */
+  .trust{background:var(--panel);border-bottom:1px solid var(--line);}
+  .trust-grid{
+    display:grid;grid-template-columns:repeat(3,1fr);
+    max-width:var(--maxw);margin:0 auto;
+  }
+  .trust-item{
+    padding:44px 32px;text-align:left;
+    border-right:1px solid var(--line);
+  }
+  .trust-item:last-child{border-right:none;}
+  @media(max-width:800px){
+    .trust-grid{grid-template-columns:1fr;}
+    .trust-item{border-right:none;border-bottom:1px solid var(--line);}
+  }
+  .trust-num{
+    font-family:'Oswald';font-weight:700;font-size:15px;color:var(--red);
+    letter-spacing:.06em;margin-bottom:8px;
+  }
+  .trust-label{font-size:15px;color:var(--ink-soft);max-width:320px;}
+  .trust-label strong{color:var(--ink);font-weight:600;}
+
+  /* ============ SECTION HEADERS ============ */
+  .sec-head{margin-bottom:52px;max-width:640px;}
+  .sec-eyebrow{
+    color:var(--red);font-family:'Oswald';font-size:13px;font-weight:600;
+    letter-spacing:.1em;margin-bottom:14px;display:block;
+  }
+  .sec-head h2{font-size:clamp(30px,4vw,44px);margin-bottom:16px;}
+  .sec-head p{color:var(--ink-soft);font-size:16.5px;max-width:560px;}
+
+  /* ============ KNOWLEDGE BASE TABS ============ */
+  .kb{background:var(--panel);}
+  .kb-tabs{
+    display:flex;gap:2px;flex-wrap:wrap;margin-bottom:0;
+    border-bottom:2px solid var(--line);
+  }
+  .kb-tab{
+    background:none;border:none;cursor:pointer;
+    padding:16px 22px;font-family:'Oswald';font-size:14px;font-weight:600;
+    color:var(--ink-soft);letter-spacing:.02em;
+    border-bottom:3px solid transparent;margin-bottom:-2px;
+    transition:color .2s, border-color .2s;
+    white-space:nowrap;
+  }
+  .kb-tab:hover{color:var(--ink);}
+  .kb-tab.active{color:var(--red);border-bottom-color:var(--red);}
+  .kb-panel{display:none;padding-top:44px;}
+  .kb-panel.active{display:block;animation:fadeUp .5s ease;}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(10px);}to{opacity:1;transform:translateY(0);}}
+
+  /* History timeline */
+  .timeline{position:relative;padding-left:28px;border-left:2px solid var(--line);}
+  .tl-item{position:relative;padding-bottom:38px;}
+  .tl-item:last-child{padding-bottom:0;}
+  .tl-item::before{
+    content:"";position:absolute;left:-34px;top:4px;width:11px;height:11px;
+    background:var(--red);border-radius:50%;border:3px solid var(--panel);
+    box-shadow:0 0 0 1px var(--red);
+  }
+  .tl-year{font-family:'Oswald';font-weight:700;color:var(--red);font-size:14px;letter-spacing:.05em;margin-bottom:4px;}
+  .tl-title{font-family:'Oswald';font-weight:600;font-size:18px;margin-bottom:6px;}
+  .tl-body{color:var(--ink-soft);font-size:15.5px;max-width:620px;}
+
+  /* Nihongo counting table */
+  .count-grid{
+    display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;
+    background:var(--line);border:1px solid var(--line);
+  }
+  .count-cell{background:var(--panel);padding:20px 18px;transition:background .2s;}
+  .count-cell:hover{background:#FBF7F0;}
+  .count-num{font-family:'Oswald';color:var(--ink-soft);font-size:13px;margin-bottom:6px;}
+  .count-jp{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:22px;margin-bottom:2px;}
+  .count-romaji{color:var(--red);font-weight:600;font-size:14px;}
+
+  /* Terms & techniques table */
+  .term-group{margin-bottom:40px;}
+  .term-group h4{
+    font-family:'Oswald';font-size:16px;letter-spacing:.05em;color:var(--ink);
+    margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--line);
+  }
+  .term-row{
+    display:grid;grid-template-columns:1fr 1.4fr;gap:20px;
+    padding:13px 0;border-bottom:1px solid #EDEAE2;
+    align-items:baseline;
+  }
+  .term-row:last-child{border-bottom:none;}
+  .term-jp{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:16.5px;}
+  .term-jp .romaji{display:block;font-family:'Oswald';font-weight:500;color:var(--red);font-size:13px;letter-spacing:.03em;margin-top:2px;}
+  .term-def{color:var(--ink-soft);font-size:14.5px;}
+  @media(max-width:640px){.term-row{grid-template-columns:1fr;gap:4px;}}
+
+  /* Philosophy - Dojo Kun */
+  .kun-list{display:flex;flex-direction:column;gap:0;border-top:1px solid var(--line);}
+  .kun-item{
+    display:grid;grid-template-columns:56px 1fr;gap:24px;
+    padding:26px 0;border-bottom:1px solid var(--line);align-items:start;
+  }
+  .kun-index{font-family:'Oswald';font-weight:700;font-size:28px;color:var(--line);}
+  .kun-jp{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:19px;margin-bottom:4px;}
+  .kun-en{color:var(--ink-soft);font-size:15px;}
+  .niju-note{
+    margin-top:36px;padding:26px 28px;background:#FBF7F0;border-left:3px solid var(--red);
+  }
+  .niju-note p{color:var(--ink-soft);font-size:15px;}
+  .niju-note strong{color:var(--ink);}
+
+  /* ============ PROGRAMS BENTO ============ */
+  .programs{background:var(--paper);}
+  .bento{display:grid;grid-template-columns:1.3fr 1fr 1fr;grid-template-rows:auto auto;gap:20px;}
+  .bento .card:nth-child(1){grid-row:1 / 3;}
+  @media(max-width:860px){
+    .bento{grid-template-columns:1fr 1fr;}
+    .bento .card:nth-child(1){grid-column:1/3;grid-row:auto;}
+  }
+  @media(max-width:600px){
+    .bento{grid-template-columns:1fr;}
+    .bento .card:nth-child(1){grid-column:auto;}
+  }
+  .card{
+    background:var(--panel);border:1px solid var(--line);
+    padding:34px;position:relative;overflow:hidden;
+    transition:border-color .25s, transform .25s;
+  }
+  .card:hover{border-color:var(--red);transform:translateY(-4px);}
+  .card-belt{
+    width:40px;height:6px;background:var(--red);margin-bottom:22px;
+  }
+  .card h3{font-size:24px;margin-bottom:12px;}
+  .card p{color:var(--ink-soft);font-size:15px;margin-bottom:18px;}
+  .card ul{list-style:none;color:var(--ink-soft);font-size:14px;}
+  .card ul li{padding:6px 0;border-top:1px solid #EDEAE2;}
+  .card ul li:first-child{border-top:none;}
+  .card .tag{
+    position:absolute;top:34px;right:34px;font-family:'Oswald';font-size:12px;
+    color:var(--red);letter-spacing:.06em;font-weight:600;
+  }
+
+  /* ============ SCHEDULE / TABS ============ */
+  .sched{background:var(--dojo-black);color:#fff;}
+  .sched .sec-eyebrow{color:var(--red);}
+  .sched .sec-head h2{color:#fff;}
+  .sched .sec-head p{color:#a8a49c;}
+  .day-row{
+    display:grid;grid-template-columns:160px 1fr auto;gap:20px;align-items:center;
+    padding:18px 0;border-bottom:1px solid rgba(255,255,255,.1);
+  }
+  @media(max-width:640px){.day-row{grid-template-columns:1fr;gap:4px;}}
+  .day-name{font-family:'Oswald';font-weight:600;font-size:15px;color:#fff;}
+  .day-class{color:#c9c6c0;font-size:14.5px;}
+  .day-time{color:var(--red);font-family:'Oswald';font-size:14px;font-weight:600;}
+  .membership-note{
+    margin-top:56px;padding-top:40px;border-top:1px solid rgba(255,255,255,.12);
+  }
+  .membership-note h4{color:#fff;font-family:'Oswald';font-size:19px;margin-bottom:10px;}
+  .membership-note p{color:#a8a49c;font-size:15px;max-width:520px;margin-bottom:24px;}
+  .membership-links{display:flex;gap:16px;flex-wrap:wrap;}
+
+  /* ============ LEADERSHIP ============ */
+  .leaders-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;}
+  @media(max-width:860px){.leaders-grid{grid-template-columns:1fr;}}
+  .leader-card{
+    background:var(--panel);border:1px solid var(--line);padding:30px;
+    transition:border-color .25s, transform .25s;
+  }
+  .leader-card:hover{border-color:var(--red);transform:translateY(-3px);}
+  .leader-belt{width:34px;height:5px;background:var(--red);margin-bottom:20px;}
+  .leader-role{font-family:'Oswald';font-size:12px;letter-spacing:.08em;color:var(--red);margin-bottom:8px;}
+  .leader-name{font-family:'Oswald';font-size:19px;font-weight:600;margin-bottom:10px;}
+  .leader-note{color:var(--ink-soft);font-size:14px;}
+
+  /* ============ RANK TAB ============ */
+  .rank-note{color:var(--ink-soft);font-size:14.5px;max-width:640px;margin-bottom:28px;}
+  .rank-note strong{color:var(--ink);}
+  .belt-progression{display:flex;flex-wrap:wrap;gap:12px;margin-bottom:48px;}
+  .belt-chip{flex:1 1 108px;background:var(--panel);border:1px solid var(--line);padding:14px;text-align:center;}
+  .belt-swatch{height:12px;width:100%;margin-bottom:10px;border:1px solid rgba(0,0,0,.08);}
+  .belt-kyu{font-family:'Oswald';font-size:11px;letter-spacing:.05em;color:var(--ink-soft);margin-bottom:3px;}
+  .belt-name{font-size:13px;font-weight:600;}
+  .dan-block h4{font-family:'Oswald';font-size:16px;letter-spacing:.05em;margin-bottom:16px;padding-bottom:10px;border-bottom:1px solid var(--line);}
+  .dan-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);}
+  .dan-cell{background:var(--panel);padding:16px 18px;}
+  .dan-num{font-family:'Oswald';font-size:12px;color:var(--red);margin-bottom:4px;}
+  .dan-jp{font-family:'Zen Kaku Gothic New';font-weight:700;font-size:16px;}
+  .dan-romaji{font-size:13px;color:var(--ink-soft);}
+
+  /* ============ CONTACT ============ */
+  .contact{background:var(--panel);}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:0;border:1px solid var(--line);}
+  @media(max-width:860px){.contact-grid{grid-template-columns:1fr;}}
+  .contact-left{padding:52px 44px;background:var(--paper);}
+  .contact-right{padding:52px 44px;}
+  .contact-left h3{font-size:26px;margin-bottom:24px;}
+  .info-row{display:flex;gap:16px;margin-bottom:22px;align-items:flex-start;}
+  .info-icon{
+    width:38px;height:38px;border:1px solid var(--red);color:var(--red);
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:16px;
+  }
+  .info-label{font-family:'Oswald';font-size:12px;letter-spacing:.06em;color:var(--ink-soft);margin-bottom:3px;}
+  .info-val{font-size:15px;color:var(--ink);font-weight:500;}
+  .map-ph{
+    margin-top:26px;height:180px;background:repeating-linear-gradient(45deg,#EDEAE2 0 10px,#F5F3EE 10px 20px);
+    border:1px solid var(--line);display:flex;align-items:center;justify-content:center;
+    color:var(--ink-soft);font-size:13px;font-family:'Oswald';letter-spacing:.04em;
+  }
+  .map-embed{margin-top:26px;border:1px solid var(--line);}
+  .map-embed iframe{width:100%;height:200px;border:none;display:block;}
+  .map-directions{
+    display:inline-block;margin-top:12px;font-family:'Oswald';font-size:12.5px;
+    letter-spacing:.04em;color:var(--red);border-bottom:1px solid var(--red);padding-bottom:2px;
+  }
+  form{display:flex;flex-direction:column;gap:18px;}
+  .field label{display:block;font-family:'Oswald';font-size:12px;letter-spacing:.05em;color:var(--ink-soft);margin-bottom:7px;}
+  .field input,.field select,.field textarea{
+    width:100%;border:1px solid var(--line);background:var(--panel);
+    padding:13px 14px;font-family:'Inter';font-size:14.5px;color:var(--ink);
+    transition:border-color .2s;
+  }
+  .field input:focus,.field select:focus,.field textarea:focus{outline:none;border-color:var(--red);}
+  .field textarea{resize:vertical;min-height:90px;}
+  .row2{display:grid;grid-template-columns:1fr 1fr;gap:14px;}
+  @media(max-width:500px){.row2{grid-template-columns:1fr;}}
+  .submit-btn{
+    background:var(--red);color:#fff;border:none;padding:15px;
+    font-family:'Oswald';font-weight:600;font-size:14.5px;letter-spacing:.03em;
+    cursor:pointer;transition:background .2s;margin-top:6px;
+  }
+  .submit-btn:hover{background:var(--red-deep);}
+
+  /* ============ FOOTER ============ */
+  footer{background:var(--dojo-black);color:#8a8680;padding:60px 0 30px;}
+  .foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr 1fr;gap:40px;margin-bottom:48px;}
+  @media(max-width:760px){.foot-grid{grid-template-columns:1fr 1fr;}}
+  @media(max-width:480px){.foot-grid{grid-template-columns:1fr;}}
+  .foot-brand{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+  .foot-brand .emblem{width:36px;height:36px;}
+  footer h5{font-family:'Oswald';color:#fff;font-size:13px;letter-spacing:.06em;margin-bottom:16px;}
+  footer ul{list-style:none;}
+  footer ul li{margin-bottom:10px;font-size:14px;}
+  footer ul li a:hover{color:#fff;}
+  .foot-bottom{
+    border-top:1px solid rgba(255,255,255,.1);padding-top:24px;
+    display:flex;justify-content:space-between;flex-wrap:wrap;gap:12px;
+    font-size:13px;
+  }
+
+  /* reveal-on-scroll */
+  .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s ease, transform .7s ease;}
+  .reveal.in{opacity:1;transform:translateY(0);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;}
+    html{scroll-behavior:auto;}
+  }
+</style>
+</head>
+<body>
+
+<!-- JKA Qatar Chapter logo, embedded inline as base64 so the file stays fully portable -->
+
+<!-- ============ NAV ============ -->
+<header>
+  <div class="navwrap">
+    <div class="brand">
+      <img class="emblem" src="data:image/png;base64,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" alt="JKA Qatar Chapter logo">
+      <div class="brand-text">
+        <div class="l1">JKA PHILIPPINES</div>
+        <div class="l2">QATAR CHAPTER</div>
+      </div>
+    </div>
+    <nav class="links">
+      <a href="#home" class="active">Home</a>
+      <a href="#knowledge">Knowledge Base</a>
+      <a href="#programs">Programs</a>
+      <a href="#schedule">Schedule</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-cta">Visit a Class</button>
+    <button class="burger" id="burgerBtn"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="home">
+  <div class="hero-grid">
+    <div>
+      <div class="kicker">JAPAN KARATE ASSOCIATION — DOHA, QATAR</div>
+      <h1>Shotokan Karate,<br><em>Taught to the Standard</em><br>of Tokyo.</h1>
+      <p class="lead">The official Qatar chapter of JKA Philippines. We train Shotokan karate exactly as codified by the Japan Karate Association — kihon, kata, and kumite, under Sensei Rolando "Omar" Corpuz Ladjahasan.</p>
+      <div class="hero-ctas">
+        <button class="btn-primary">Book a Free Trial Class</button>
+        <a href="#knowledge"><button class="btn-ghost">Explore the Knowledge Base</button></a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <img class="emblem-watermark" src="data:image/png;base64,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" alt="">
+      <div class="smoke-layer">
+        <span class="smoke s1"></span>
+        <span class="smoke s2"></span>
+        <span class="smoke s3"></span>
+        <span class="smoke s4"></span>
+      </div>
+      <div class="hero-video-frame">
+        <video class="hero-video" autoplay muted loop playsinline poster="training-poster.jpg" aria-label="JKA Qatar Chapter students training">
+          <source src="training-video.mp4" type="video/mp4">
+        </video>
+      </div>
+    </div>
+  </div>
+  <div class="divider"></div>
+</section>
+
+<!-- ============ TRUST STRIP ============ -->
+<section class="trust">
+  <div class="trust-grid">
+    <div class="trust-item reveal">
+      <div class="trust-num">AFFILIATION</div>
+      <div class="trust-label"><strong>JKA Philippines</strong> — Qatar Chapter, recognized under the Japan Karate Association global network.</div>
+    </div>
+    <div class="trust-item reveal">
+      <div class="trust-num">STYLE</div>
+      <div class="trust-label">A traditional <strong>Shotokan Karate</strong> school — kihon, kata, and kumite taught in sequence, exactly as codified in Tokyo.</div>
+    </div>
+    <div class="trust-item reveal">
+      <div class="trust-num">LEADERSHIP</div>
+      <div class="trust-label">Established and led by <strong>Sensei Rolando "Omar" Corpuz Ladjahasan</strong>, following JKA Tokyo standards.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ LEADERSHIP ============ -->
+<section class="section" id="leadership">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-eyebrow">LEADERSHIP</span>
+      <h2>Instruction Traceable to Tokyo</h2>
+      <p>Every rank awarded at this dojo runs through a clear line of accountability — from the Qatar chapter floor, through JKA Philippines, back to JKA Headquarters.</p>
+    </div>
+    <div class="leaders-grid">
+      <div class="leader-card reveal">
+        <div class="leader-belt"></div>
+        <div class="leader-role">COUNTRY FOUNDER — JKA QATAR</div>
+        <div class="leader-name">Sensei Rolando "Omar" Corpuz Ladjahasan</div>
+        <div class="leader-note">Founded JKA in Qatar, teaching Shotokan karate to the standard set by JKA Headquarters in Tokyo.</div>
+      </div>
+      <div class="leader-card reveal">
+        <div class="leader-belt"></div>
+        <div class="leader-role">CHAIRMAN — JKA PHILIPPINES</div>
+        <div class="leader-name">Lito Luage Shihan</div>
+        <div class="leader-note">Oversees JKA Philippines gasshuku and kyu examinations, including those held for the Qatar chapter.</div>
+      </div>
+      <div class="leader-card reveal">
+        <div class="leader-belt"></div>
+        <div class="leader-role">CHIEF INSTRUCTOR — JKA PHILIPPINES</div>
+        <div class="leader-name">Oca Rham Obsioma Shihan</div>
+        <div class="leader-note">Sets the technical standard applied across JKA Philippines chapters, Qatar included.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ KNOWLEDGE BASE ============ -->
+<section class="section kb" id="knowledge">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-eyebrow">KNOWLEDGE BASE</span>
+      <h2>Understand the Art, Not Just the Moves</h2>
+      <p>Everything a student — or a curious visitor — needs to understand JKA Shotokan: where it came from, how the Japanese terms work, and the philosophy underneath the technique.</p>
+    </div>
+
+    <div class="kb-tabs" role="tablist">
+      <button class="kb-tab active" data-tab="history">History of JKA</button>
+      <button class="kb-tab" data-tab="counting">Nihongo Counting</button>
+      <button class="kb-tab" data-tab="terms">Terms &amp; Techniques</button>
+      <button class="kb-tab" data-tab="philosophy">Philosophy &amp; Dojo Kun</button>
+      <button class="kb-tab" data-tab="rank">Kyu &amp; Dan Ranking</button>
+    </div>
+
+    <!-- HISTORY -->
+    <div class="kb-panel active" id="panel-history">
+      <div class="timeline">
+        <div class="tl-item">
+          <div class="tl-year">1868–1922</div>
+          <div class="tl-title">Karate Leaves Okinawa</div>
+          <div class="tl-body">Gichin Funakoshi, an Okinawan schoolteacher trained in the local fighting art of "te," is invited to demonstrate karate in Tokyo. He formally introduces the art to mainland Japan and begins renaming it "karate" — using characters meaning "empty hand."</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1936</div>
+          <div class="tl-title">The Shotokan Dojo Opens</div>
+          <div class="tl-body">Funakoshi's students build a dedicated dojo in Tokyo, named "Shotokan" after his pen name, "Shoto" (meaning "pine waves"). The style that would come to be known as Shotokan karate takes institutional shape.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1949</div>
+          <div class="tl-title">The Japan Karate Association is Founded</div>
+          <div class="tl-body">The JKA is formally established in Tokyo to preserve and standardize Funakoshi's teachings, with Masatoshi Nakayama taking on the role of Chief Instructor after Funakoshi's passing in 1957 — codifying the technical curriculum still used today.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">1950s–1970s</div>
+          <div class="tl-title">Global Expansion</div>
+          <div class="tl-body">The JKA sends senior instructors abroad as part of its overseas instructor program, spreading standardized Shotokan karate across the world and establishing national and regional federations.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">2024–Present</div>
+          <div class="tl-title">A New Generation Leads JKA World Federation</div>
+          <div class="tl-body">Following the passing of longtime Chief Instructor Masaaki Ueki, 10th Dan, in July 2024, Oishi Shuseki Shihan, 9th Dan, now leads as Chief Instructor of JKA World Federation — carrying the technical standard forward into the next generation of practitioners worldwide.</div>
+        </div>
+        <div class="tl-item">
+          <div class="tl-year">Present Day</div>
+          <div class="tl-title">JKA Philippines — Qatar Chapter</div>
+          <div class="tl-body">Founded by Sensei Rolando "Omar" Corpuz Ladjahasan, our Doha dojo carries the JKA curriculum forward for the Filipino community and wider Qatar residents, holding to the same grading standards set by JKA Headquarters.</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- COUNTING -->
+    <div class="kb-panel" id="panel-counting">
+      <p style="color:var(--ink-soft);font-size:15px;margin-bottom:24px;max-width:600px;">Every class opens and closes in Japanese. Counting to ten — used for repetitions in kihon and kata — is the first thing every new student learns.</p>
+      <div class="count-grid">
+        <div class="count-cell"><div class="count-num">1</div><div class="count-jp jp">一</div><div class="count-romaji">Ichi</div></div>
+        <div class="count-cell"><div class="count-num">2</div><div class="count-jp jp">二</div><div class="count-romaji">Ni</div></div>
+        <div class="count-cell"><div class="count-num">3</div><div class="count-jp jp">三</div><div class="count-romaji">San</div></div>
+        <div class="count-cell"><div class="count-num">4</div><div class="count-jp jp">四</div><div class="count-romaji">Shi</div></div>
+        <div class="count-cell"><div class="count-num">5</div><div class="count-jp jp">五</div><div class="count-romaji">Go</div></div>
+        <div class="count-cell"><div class="count-num">6</div><div class="count-jp jp">六</div><div class="count-romaji">Roku</div></div>
+        <div class="count-cell"><div class="count-num">7</div><div class="count-jp jp">七</div><div class="count-romaji">Shichi</div></div>
+        <div class="count-cell"><div class="count-num">8</div><div class="count-jp jp">八</div><div class="count-romaji">Hachi</div></div>
+        <div class="count-cell"><div class="count-num">9</div><div class="count-jp jp">九</div><div class="count-romaji">Ku</div></div>
+        <div class="count-cell"><div class="count-num">10</div><div class="count-jp jp">十</div><div class="count-romaji">Jū</div></div>
+      </div>
+    </div>
+
+    <!-- TERMS -->
+    <div class="kb-panel" id="panel-terms">
+      <div class="term-group">
+        <h4>KAMAE — Stances</h4>
+        <div class="term-row"><div class="term-jp">Zenkutsu-dachi<span class="romaji">Front stance</span></div><div class="term-def">Long, low forward stance with weight loaded toward the front leg — the base for most attacking techniques.</div></div>
+        <div class="term-row"><div class="term-jp">Kiba-dachi<span class="romaji">Straddle-leg stance</span></div><div class="term-def">Wide horse-riding stance, weight evenly split, used for lateral power and side techniques.</div></div>
+        <div class="term-row"><div class="term-jp">Kokutsu-dachi<span class="romaji">Back stance</span></div><div class="term-def">Weight held mostly on the rear leg, front leg light — a defensive, evasive stance.</div></div>
+      </div>
+      <div class="term-group">
+        <h4>UKE — Blocks</h4>
+        <div class="term-row"><div class="term-jp">Age-uke<span class="romaji">Rising block</span></div><div class="term-def">Deflects a strike upward and away from the head.</div></div>
+        <div class="term-row"><div class="term-jp">Soto-uke<span class="romaji">Outside block</span></div><div class="term-def">Sweeps an attack from the centerline outward, arm moving in-to-out.</div></div>
+        <div class="term-row"><div class="term-jp">Gedan-barai<span class="romaji">Downward sweep</span></div><div class="term-def">Clears a low attack, typically a kick, sweeping downward across the body.</div></div>
+      </div>
+      <div class="term-group">
+        <h4>TSUKI &amp; UCHI — Strikes</h4>
+        <div class="term-row"><div class="term-jp">Oi-zuki<span class="romaji">Lunge punch</span></div><div class="term-def">A stepping punch thrown with the same-side hand as the forward leg.</div></div>
+        <div class="term-row"><div class="term-jp">Gyaku-zuki<span class="romaji">Reverse punch</span></div><div class="term-def">A punch thrown with the hand opposite the forward leg — the core scoring technique in kumite.</div></div>
+        <div class="term-row"><div class="term-jp">Shuto-uchi<span class="romaji">Knife-hand strike</span></div><div class="term-def">A strike delivered with the blade edge of an open hand.</div></div>
+      </div>
+      <div class="term-group">
+        <h4>GERI — Kicks</h4>
+        <div class="term-row"><div class="term-jp">Mae-geri<span class="romaji">Front kick</span></div><div class="term-def">A snapping or thrusting kick delivered straight ahead with the ball of the foot.</div></div>
+        <div class="term-row"><div class="term-jp">Mawashi-geri<span class="romaji">Roundhouse kick</span></div><div class="term-def">A kick that travels in an arc, striking with the instep or ball of the foot.</div></div>
+        <div class="term-row"><div class="term-jp">Yoko-geri<span class="romaji">Side kick</span></div><div class="term-def">A kick thrust directly sideways, striking with the blade of the foot.</div></div>
+      </div>
+    </div>
+
+    <!-- PHILOSOPHY -->
+    <div class="kb-panel" id="panel-philosophy">
+      <p style="color:var(--ink-soft);font-size:15px;margin-bottom:8px;max-width:600px;">The Dojo Kun are five precepts recited at the close of every JKA class, attributed to Gichin Funakoshi. They frame karate as a discipline of character before a system of combat.</p>
+      <div class="kun-list">
+        <div class="kun-item">
+          <div class="kun-index">01</div>
+          <div><div class="kun-jp jp">人格完成に努むること</div><div class="kun-en">Seek perfection of character.</div></div>
+        </div>
+        <div class="kun-item">
+          <div class="kun-index">02</div>
+          <div><div class="kun-jp jp">誠の道を守ること</div><div class="kun-en">Be faithful — commit to the path with sincerity.</div></div>
+        </div>
+        <div class="kun-item">
+          <div class="kun-index">03</div>
+          <div><div class="kun-jp jp">努力の精神を養うこと</div><div class="kun-en">Endeavor — cultivate the spirit of effort.</div></div>
+        </div>
+        <div class="kun-item">
+          <div class="kun-index">04</div>
+          <div><div class="kun-jp jp">礼儀を重んずること</div><div class="kun-en">Respect others.</div></div>
+        </div>
+        <div class="kun-item">
+          <div class="kun-index">05</div>
+          <div><div class="kun-jp jp">血気の勇を戒むること</div><div class="kun-en">Refrain from violent behavior — restrain impetuous courage.</div></div>
+        </div>
+      </div>
+      <div class="niju-note">
+        <p><strong>Karate ni sente nashi</strong> — "There is no first attack in karate." One of Funakoshi's twenty guiding precepts (Niju Kun), and the philosophical center of JKA training: karate exists for defense and self-mastery, never for provocation.</p>
+      </div>
+    </div>
+
+    <!-- KYU & DAN RANKING -->
+    <div class="kb-panel" id="panel-rank">
+      <p class="rank-note">Rank in JKA Shotokan runs two tracks: <strong>kyu</strong> grades (colored belts, for students working toward black belt) and <strong>dan</strong> grades (black belt degrees, for certified practitioners). Belt colors below follow a documented JKA-affiliate structure and are shown as <strong>representative</strong> — confirm exact colors and requirements with your instructor, as they can vary slightly between national chapters.</p>
+
+      <div class="belt-progression">
+        <div class="belt-chip"><div class="belt-swatch" style="background:#F5F3EE;border-color:#D8D3C7;"></div><div class="belt-kyu">9th Kyu</div><div class="belt-name">Orange</div></div>
+        <div class="belt-chip"><div class="belt-swatch" style="background:#C0392B;"></div><div class="belt-kyu">8th Kyu</div><div class="belt-name">Red</div></div>
+        <div class="belt-chip"><div class="belt-swatch" style="background:#E8C547;"></div><div class="belt-kyu">7th Kyu</div><div class="belt-name">Yellow</div></div>
+        <div class="belt-chip"><div class="belt-swatch" style="background:#3F7D4A;"></div><div class="belt-kyu">6th Kyu</div><div class="belt-name">Green</div></div>
+        <div class="belt-chip"><div class="belt-swatch" style="background:#6C4E8C;"></div><div class="belt-kyu">5th Kyu</div><div class="belt-name">Purple</div></div>
+        <div class="belt-chip"><div class="belt-swatch" style="background:linear-gradient(90deg,#6C4E8C 50%,#F5F3EE 50%);"></div><div class="belt-kyu">4th Kyu</div><div class="belt-name">Purple / White</div></div>
+        <div class="belt-chip"><div class="belt-swatch" style="background:#6B4226;"></div><div class="belt-kyu">3rd Kyu</div><div class="belt-name">Brown</div></div>
+        <div class="belt-chip"><div class="belt-swatch" style="background:linear-gradient(90deg,#6B4226 65%,#F5F3EE 65%,#F5F3EE 72%,#6B4226 72%);"></div><div class="belt-kyu">2nd Kyu</div><div class="belt-name">Brown, 1 Stripe</div></div>
+        <div class="belt-chip"><div class="belt-swatch" style="background:linear-gradient(90deg,#6B4226 55%,#F5F3EE 55%,#F5F3EE 62%,#6B4226 62%,#6B4226 72%,#F5F3EE 72%,#F5F3EE 79%,#6B4226 79%);"></div><div class="belt-kyu">1st Kyu</div><div class="belt-name">Brown, 2 Stripes</div></div>
+      </div>
+
+      <div class="dan-block">
+        <h4>DAN GRADES — Black Belt (belt stays plain black at every level)</h4>
+        <div class="dan-grid">
+          <div class="dan-cell"><div class="dan-num">1st Dan</div><div class="dan-jp jp">初段</div><div class="dan-romaji">Shodan</div></div>
+          <div class="dan-cell"><div class="dan-num">2nd Dan</div><div class="dan-jp jp">二段</div><div class="dan-romaji">Nidan</div></div>
+          <div class="dan-cell"><div class="dan-num">3rd Dan</div><div class="dan-jp jp">三段</div><div class="dan-romaji">Sandan</div></div>
+          <div class="dan-cell"><div class="dan-num">4th Dan</div><div class="dan-jp jp">四段</div><div class="dan-romaji">Yondan</div></div>
+          <div class="dan-cell"><div class="dan-num">5th Dan</div><div class="dan-jp jp">五段</div><div class="dan-romaji">Godan</div></div>
+          <div class="dan-cell"><div class="dan-num">6th Dan</div><div class="dan-jp jp">六段</div><div class="dan-romaji">Rokudan</div></div>
+          <div class="dan-cell"><div class="dan-num">7th Dan</div><div class="dan-jp jp">七段</div><div class="dan-romaji">Shichidan</div></div>
+          <div class="dan-cell"><div class="dan-num">8th Dan</div><div class="dan-jp jp">八段</div><div class="dan-romaji">Hachidan</div></div>
+          <div class="dan-cell"><div class="dan-num">9th Dan</div><div class="dan-jp jp">九段</div><div class="dan-romaji">Kudan</div></div>
+          <div class="dan-cell"><div class="dan-num">10th Dan</div><div class="dan-jp jp">十段</div><div class="dan-romaji">Judan</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PROGRAMS ============ -->
+<section class="section programs" id="programs">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-eyebrow">PROGRAMS</span>
+      <h2>Training for Every Age, Same Curriculum</h2>
+      <p>All classes follow the JKA-standard progression — no shortcuts, no separate "watered-down" curriculum for kids or beginners.</p>
+    </div>
+    <div class="bento">
+      <div class="card reveal">
+        <span class="tag">AGES 5–12</span>
+        <div class="card-belt"></div>
+        <h3>Kids Karate</h3>
+        <p>Structured, energetic classes that build focus, coordination, and respect through JKA kihon fundamentals — adapted in pace, never in standard.</p>
+        <ul>
+          <li>Basic stances, blocks, and strikes</li>
+          <li>Discipline and classroom etiquette</li>
+          <li>Belt grading aligned to JKA syllabus</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <span class="tag">AGES 13+</span>
+        <div class="card-belt"></div>
+        <h3>Adult Karate</h3>
+        <p>Full JKA Shotokan curriculum — kihon, kata, and kumite — for beginners through advanced practitioners preparing for dan grading.</p>
+        <ul>
+          <li>Kihon and kata practice</li>
+          <li>Semi- and full-contact kumite</li>
+          <li>JKA-recognized rank testing</li>
+        </ul>
+      </div>
+      <div class="card reveal">
+        <span class="tag">ALL LEVELS</span>
+        <div class="card-belt"></div>
+        <h3>Kata &amp; Bunkai</h3>
+        <p>Deep-dive sessions on the JKA kata syllabus — form, timing, and the applied combat meaning (bunkai) behind each movement.</p>
+        <ul>
+          <li>Heian and Tekki series</li>
+          <li>Advanced JKA kata</li>
+          <li>Application and self-defense context</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ SCHEDULE ============ -->
+<section class="section sched" id="schedule">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-eyebrow">SCHEDULE</span>
+      <h2>Class Time</h2>
+    </div>
+
+    <div class="day-row"><div class="day-name">Friday</div><div class="day-class">All Programs — Kids &amp; Adults</div><div class="day-time">9:00 – 11:00 AM</div></div>
+    <p style="color:#a8a49c;font-size:14px;margin-top:18px;max-width:560px;">One weekly session for all age and belt groups. Different groups are led by assistant instructors (Sensei) alongside Sensei Omar within the same class.</p>
+
+    <div class="membership-note">
+      <h4>Membership &amp; Fees</h4>
+      <p>Program details and fees are shared directly with new students — message us on Facebook or call/WhatsApp to get started.</p>
+      <div class="membership-links">
+        <a class="btn-primary" href="https://www.facebook.com/JKAPHQATAR/" target="_blank" rel="noopener">Message on Facebook</a>
+        <a class="btn-ghost" href="tel:+97466429449">Call +974 6642 9449</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact" id="contact">
+  <div class="wrap">
+    <div class="sec-head reveal">
+      <span class="sec-eyebrow">VISIT THE DOJO</span>
+      <h2>Start Your First Class</h2>
+    </div>
+
+    <div class="contact-grid reveal">
+      <div class="contact-left">
+        <h3>Dojo Information</h3>
+        <div class="info-row">
+          <div class="info-icon">◆</div>
+          <div>
+            <div class="info-label">ADDRESS</div>
+            <div class="info-val">Al Ahli Stadium — across from The Mall and Al Emadi Hospital, Doha, Qatar</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">☎</div>
+          <div>
+            <div class="info-label">PHONE / WHATSAPP</div>
+            <div class="info-val">+974 6642 9449</div>
+          </div>
+        </div>
+        <div class="info-row">
+          <div class="info-icon">✉</div>
+          <div>
+            <div class="info-label">FACEBOOK</div>
+            <div class="info-val">JKA Philippines Qatar Chapter</div>
+          </div>
+        </div>
+        <div class="map-embed">
+          <iframe src="https://www.google.com/maps?q=25.2522807,51.5362068&z=16&output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" title="Dojo location map"></iframe>
+        </div>
+        <a class="map-directions" href="https://maps.app.goo.gl/H3ssQzbbk3eNxihc8" target="_blank" rel="noopener">Get Directions →</a>
+      </div>
+      <div class="contact-right">
+        <form onsubmit="event.preventDefault(); alert('Form submitted — connect this to your email or CRM.');">
+          <div class="row2">
+            <div class="field"><label>First Name</label><input type="text" required></div>
+            <div class="field"><label>Last Name</label><input type="text" required></div>
+          </div>
+          <div class="field"><label>Email</label><input type="email" required></div>
+          <div class="field"><label>Phone / WhatsApp</label><input type="tel"></div>
+          <div class="field">
+            <label>Program of Interest</label>
+            <select>
+              <option>Kids Karate</option>
+              <option>Adult Karate</option>
+              <option>Kata & Bunkai</option>
+              <option>Not sure yet</option>
+            </select>
+          </div>
+          <div class="field"><label>Message</label><textarea placeholder="Tell us about your experience level, if any."></textarea></div>
+          <button class="submit-btn" type="submit">Send Inquiry</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-brand">
+          <img class="emblem" src="data:image/png;base64,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" alt="JKA Qatar Chapter logo">
+          <div class="brand-text">
+            <div class="l1" style="color:#fff;">JKA PHILIPPINES</div>
+            <div class="l2">QATAR CHAPTER</div>
+          </div>
+        </div>
+        <p style="font-size:13.5px;max-width:280px;">Traditional Shotokan karate, taught to the standard of JKA Tokyo. Discipline, respect, and character before technique.</p>
+      </div>
+      <div>
+        <h5>NAVIGATE</h5>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#knowledge">Knowledge Base</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#schedule">Schedule</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>KNOWLEDGE BASE</h5>
+        <ul>
+          <li><a href="#knowledge">History of JKA</a></li>
+          <li><a href="#knowledge">Nihongo Counting</a></li>
+          <li><a href="#knowledge">Terms &amp; Techniques</a></li>
+          <li><a href="#knowledge">Philosophy</a></li>
+        </ul>
+      </div>
+      <div>
+        <h5>CONNECT</h5>
+        <ul>
+          <li><a href="https://www.facebook.com/JKAPHQATAR/" target="_blank" rel="noopener">Facebook Page</a></li>
+          <li><a href="#contact">Contact Form</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="foot-bottom">
+      <span>© 2026 JKA Philippines — Qatar Chapter. Independent chapter site, not an official JKA Tokyo publication.</span>
+      <span>Osu.</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+  // Knowledge base tabs
+  document.querySelectorAll('.kb-tab').forEach(btn=>{
+    btn.addEventListener('click',()=>{
+      document.querySelectorAll('.kb-tab').forEach(b=>b.classList.remove('active'));
+      document.querySelectorAll('.kb-panel').forEach(p=>p.classList.remove('active'));
+      btn.classList.add('active');
+      document.getElementById('panel-'+btn.dataset.tab).classList.add('active');
+    });
+  });
+
+  // Schedule tabs removed — single Friday session now, no toggle needed.
+
+  // Scroll reveal
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target);} });
+  },{threshold:.15});
+  revealEls.forEach(el=>io.observe(el));
+
+  // Active nav link on scroll
+  const navLinks = document.querySelectorAll('nav.links a');
+  const sections = ['home','knowledge','programs','schedule','contact'].map(id=>document.getElementById(id));
+  const navIo = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        navLinks.forEach(l=>l.classList.remove('active'));
+        const match = document.querySelector('nav.links a[href="#'+e.target.id+'"]');
+        if(match) match.classList.add('active');
+      }
+    });
+  },{threshold:.4});
+  sections.forEach(s=>{ if(s) navIo.observe(s); });
+
+  // Hero video is the Facebook video plugin (XFBML), parsed by the SDK
+  // loaded at the top of <body>. No custom JS needed for it to animate.
+
+  // Mobile menu (simple toggle -> scrolls to nav links area by showing them)
+  const burger = document.getElementById('burgerBtn');
+  burger.addEventListener('click',()=>{
+    const links = document.querySelector('nav.links');
+    const isOpen = links.style.display === 'flex';
+    if(isOpen){
+      links.style.display='none';
+    } else {
+      links.style.cssText='display:flex;position:absolute;top:76px;left:0;right:0;background:#0B0B0C;flex-direction:column;padding:20px 28px;gap:0;border-top:1px solid rgba(255,255,255,.08);';
+      links.querySelectorAll('a').forEach(a=>{a.style.padding='14px 0';a.style.borderBottom='1px solid rgba(255,255,255,.08)';});
+    }
+  });
+</script>
+
+</body>
+</html>

@@ -374,6 +374,41 @@
     z-index:300;transition:width .1s linear;
   }
 
+  /* ============ SITE-WIDE: FILM GRAIN TEXTURE ============ */
+  .grain-overlay{
+    position:fixed;inset:-10%;z-index:250;pointer-events:none;
+    opacity:.05;mix-blend-mode:overlay;
+    background-image:url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='120' height='120'><filter id='n'><feTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='2' stitchTiles='stitch'/></filter><rect width='100%25' height='100%25' filter='url(%23n)'/></svg>");
+    background-repeat:repeat;
+    animation:grainShift 1s steps(4) infinite;
+  }
+  @keyframes grainShift{
+    0%{transform:translate(0,0);}
+    25%{transform:translate(-2%,1%);}
+    50%{transform:translate(1%,-1%);}
+    75%{transform:translate(-1%,2%);}
+    100%{transform:translate(0,0);}
+  }
+
+  /* ============ SITE-WIDE: CURSOR GLOW (desktop only) ============ */
+  .cursor-glow{
+    position:fixed;top:0;left:0;width:420px;height:420px;
+    background:radial-gradient(circle, rgba(166,35,28,.16), transparent 70%);
+    border-radius:50%;pointer-events:none;z-index:2;
+    transform:translate(-50%,-50%);mix-blend-mode:screen;
+    transition:left .15s ease-out, top .15s ease-out, opacity .3s ease;
+    opacity:0;
+  }
+  .cursor-glow.active{opacity:1;}
+
+  /* ============ SITE-WIDE: BUTTON RIPPLE ============ */
+  .btn-primary, .btn-ghost, .nav-cta, .submit-btn{position:relative;overflow:hidden;}
+  .ripple{
+    position:absolute;border-radius:50%;background:rgba(255,255,255,.55);
+    transform:scale(0);animation:rippleAnim .55s ease-out;pointer-events:none;
+  }
+  @keyframes rippleAnim{ to{transform:scale(2.6);opacity:0;} }
+
   /* ============ SCHEDULE / TABS ============ */
   .sched{background:var(--dojo-black);color:#fff;}
   .sched .sec-eyebrow{color:var(--red);}
@@ -495,6 +530,7 @@
 <body>
 
 <div class="scroll-progress" id="scrollProgress"></div>
+<div class="grain-overlay"></div>
 
 <!-- JKA Qatar Chapter logo, embedded inline as base64 so the file stays fully portable -->
 
@@ -869,7 +905,7 @@
         <div class="event-date"><span class="event-day">TBA</span><span class="event-month">2026</span></div>
         <div class="event-body">
           <h4>Example — Chapter Gasshuku &amp; Kyu Grading</h4>
-          <p>3rd JKA PH Qatar International Gasshuku and DAN Examination Soon.</p>
+          <p>2027 3rd JKA PH Qatar International Gashhuku & Dan/Kyu Examination.</p>
         </div>
       </div>
     </div>
@@ -946,8 +982,7 @@
           <div class="field">
             <label>Program of Interest</label>
             <select id="inqProgram">
-              <option>Kids Karate</option>
-              <option>Adult Karate</option>
+              <option>All Ages Karate</option>
               <option>Kata & Bunkai</option>
               <option>Not sure yet</option>
             </select>
@@ -1087,10 +1122,12 @@
   // 5. Commit your changes. The site updates automatically.
   // ============================================================
   const galleryPhotos = [
-    { src: "images/gallery/gallery-oizuki.jpg", caption: "Sensei Omar leading kihon practice", featured: true },
-    { src: "images/gallery/gallery-kumite.jpg", caption: "Kumite sparring drill", featured: true },
-    { src: "images/gallery/gallery-juniors.jpg", caption: "Junior class in training", featured: true },
-    { src: "images/gallery/gallery-kamae.jpg", caption: "Ready stance, full class", featured: false }
+    { src: "Photo1.jpg", caption: "", featured: true },
+	{ src: "Photo2.jpg", caption: "", featured: true },
+	{ src: "Photo3.jpg", caption: "", featured: true },
+	{ src: "Photo4.jpg", caption: "", featured: true },
+	{ src: "Photo5.jpg", caption: "", featured: true },
+	{ src: "Photo6.jpg", caption: "", featured: true },
   ];
 
   // Build slideshow (featured only)
@@ -1182,6 +1219,39 @@
   }
   window.addEventListener('scroll', updateProgress, { passive: true });
   updateProgress();
+
+  // Site-wide cursor glow (desktop with a real mouse only — skipped on touch
+  // devices and if the visitor prefers reduced motion)
+  const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const hasFinePointer = window.matchMedia('(hover: hover) and (pointer: fine)').matches;
+  if(hasFinePointer && !prefersReducedMotion){
+    const cursorGlow = document.createElement('div');
+    cursorGlow.className = 'cursor-glow';
+    document.body.appendChild(cursorGlow);
+    document.addEventListener('mousemove', (e) => {
+      cursorGlow.style.left = e.clientX + 'px';
+      cursorGlow.style.top = e.clientY + 'px';
+      cursorGlow.classList.add('active');
+    });
+    document.addEventListener('mouseleave', () => cursorGlow.classList.remove('active'));
+  }
+
+  // Site-wide button ripple ("snap" flash on click)
+  function createRipple(e){
+    const btn = e.currentTarget;
+    const rect = btn.getBoundingClientRect();
+    const size = Math.max(rect.width, rect.height);
+    const ripple = document.createElement('span');
+    ripple.className = 'ripple';
+    ripple.style.width = ripple.style.height = size + 'px';
+    ripple.style.left = (e.clientX - rect.left - size / 2) + 'px';
+    ripple.style.top = (e.clientY - rect.top - size / 2) + 'px';
+    btn.appendChild(ripple);
+    setTimeout(() => ripple.remove(), 550);
+  }
+  document.querySelectorAll('.btn-primary, .btn-ghost, .nav-cta, .submit-btn').forEach(btn=>{
+    btn.addEventListener('click', createRipple);
+  });
 
   // Mobile menu (simple toggle -> scrolls to nav links area by showing them)
   const burger = document.getElementById('burgerBtn');

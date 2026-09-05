@@ -1113,21 +1113,23 @@
   // See the comment block above this array for how to add photos.
   // ============================================================
   // HOW TO ADD A NEW PHOTO:
-  // 1. On GitHub, open (or create) an "images/gallery" folder in your repo.
-  // 2. Click "Add file" -> "Upload files" and upload your photo there.
-  // 3. Add a new line below in the same format as the examples, with the
-  //    exact filename you uploaded.
-  // 4. Set featured: true to also include it in the homepage slideshow.
+  // 1. On GitHub, click "Add file" -> "Upload files" (root of the repo,
+  //    same level as index.html) and upload your photo there.
+  // 2. Add a new line below in the same format as the examples, using the
+  //    EXACT filename you uploaded — including the correct extension.
+  //    ".jpg" and ".jpeg" are NOT the same file to a browser, so double
+  //    check the extension your photo actually has before typing it here.
+  // 3. Set featured: true to also include it in the homepage slideshow.
   //    Every photo — featured or not — always shows up in "All Photos".
-  // 5. Commit your changes. The site updates automatically.
+  // 4. Commit your changes. The site updates automatically.
   // ============================================================
   const galleryPhotos = [
-    { src: "Photo1.jpg", caption: "", featured: true },
-	{ src: "Photo2.jpg", caption: "", featured: true },
-	{ src: "Photo3.jpg", caption: "", featured: true },
-	{ src: "Photo4.jpg", caption: "", featured: true },
-	{ src: "Photo5.jpg", caption: "", featured: true },
-	{ src: "Photo6.jpg", caption: "", featured: true },
+    { src: "Photo1.jpeg", caption: "Instructors and senior students, Dojo Kun banner", featured: true },
+    { src: "Photo2.jpeg", caption: "Instructors and senior students", featured: true },
+    { src: "Photo3.jpeg", caption: "Full dojo class photo, all ages and ranks", featured: true },
+    { src: "Photo4.jpeg", caption: "Sensei Omar leading stance practice", featured: true },
+    { src: "Photo5.jpeg", caption: "Kids and adults training side by side", featured: true },
+    { src: "Photo6.jpeg", caption: "Training session on the dojo floor", featured: true },
   ];
 
   // Build slideshow (featured only)
